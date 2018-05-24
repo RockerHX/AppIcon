@@ -274,6 +274,7 @@ func generateImage(size: CGSize, scale: CGFloat, image: CGImage, filename: Strin
     }
 }
 
+
 /// Generate Images
 ///
 /// - Parameter: AppIcon
@@ -299,6 +300,7 @@ func generateImages(appIcon: AppIcon, image: CGImage) {
     }
 }
 
+
 /// Generate Appiconset
 ///
 /// - Parameter: AppIcon
@@ -320,6 +322,10 @@ func generateAppiconset(with appIcon: AppIcon, image: CGImage) {
 }
 
 
+/// Generate Appiconsets
+///
+/// - Parameter: AppIcons
+/// - Parameter: image
 func generateAppiconsets(with appIcons: [AppIcon], image: CGImage) {
     appIcons.forEach { (appIcon) in
         generateAppiconset(with: appIcon, image: image)
@@ -406,7 +412,7 @@ func selectAppIconType(with image: CGImage) {
 
 
 func loadImage(with url: URL) {
-    do{
+    do {
         let inoutData = try Data(contentsOf: url)
         print("Image size: \(inoutData.count / 1000) kb")
 
