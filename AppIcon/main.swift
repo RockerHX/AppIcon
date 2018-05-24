@@ -10,7 +10,7 @@
 import Foundation
 
 // Default Input PNG
-let defaultPng = "AppIcon.png"
+let DefaultPNGName = "AppIcon.png"
 let AppiconsetFileName = "AppIcon.appiconset"
 let ContentJSONFileName = "Contents.json"
 
@@ -226,7 +226,7 @@ func generateContentsJson(appIcon: AppIcon) {
             print("❌ Contents JSON generate failure!")
         }
     } catch {
-        print(error.localizedDescription)
+        print(error)
     }
 }
 
@@ -293,7 +293,7 @@ func generateImages(appIcon: AppIcon, image: CGImage) {
                     print("❌ json format error")
                 }
             } catch {
-                print(error.localizedDescription)
+                print(error)
             }
         }
     }
@@ -315,7 +315,7 @@ func generateAppiconset(with appIcon: AppIcon, image: CGImage) {
         print("**************** Done ****************")
     } catch {
         print("❌ \(filePath) create failure.")
-        print(error.localizedDescription)
+        print(error)
     }
 }
 
@@ -338,7 +338,7 @@ func generateAppIcon(with json: String) -> AppIcon? {
             let appIcon = try decoder.decode(AppIcon.self, from: jsonData)
             return appIcon
         } catch {
-            print("❌ JSON parse failure: \(error.localizedDescription)")
+            print("❌ JSON parse failure: \(error)")
         }
     } else {
         print("❌ JSON parse failure.")
@@ -425,7 +425,7 @@ func loadImage(with url: URL) {
             print("❌ Conversion failed, image must be in png.")
         }
     } catch {
-        print(error.localizedDescription)
+        print(error)
     }
 }
 
@@ -447,12 +447,12 @@ func start() {
         """
     )
 
-    print("Input your PNG name（Default is AppIcon.png）:")
+    print("Input your PNG name（Default is \(DefaultPNGName)）:")
     if var inputPath = readLine() {
         if inputPath.isEmpty {
-            inputPath = defaultPng
+            inputPath = DefaultPNGName
         }
-        let url  = URL(fileURLWithPath: inputPath)
+        let url = URL(fileURLWithPath: inputPath)
         loadImage(with: url)
     } else {
         print("❌ Load failure.")
